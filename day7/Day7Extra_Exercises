@@ -1,40 +1,37 @@
-# Exercise 1: Basic Class and Object
 class Person:
     def __init__(self, name, age):
         self.name = name
         self.age = age
 
     def introduce(self):
-        return f"Hello, my name is {self.name} and I am {self.age} years old."
+        return f"Hey! I’m {self.name}, {self.age} years young."
 
-p1 = Person("Alice", 25)
-p2 = Person("Bob", 30)
+p1 = Person("Mohammad Aldiesi", 24)
+p2 = Person("Ahmad Al-Shamayleh", 40)
+
+print("----------Exercise 1: Basic Class and Object----------")
 print(p1.introduce())
 print(p2.introduce())
 
 
-# Exercise 2: Instance vs Class Variables
 class Dog:
-    species = "Canis familiaris"
 
     def __init__(self, name, breed):
         self.name = name
         self.breed = breed
 
     def describe(self):
-        return f"{self.name} is a {self.breed}. Species: {self.species}."
+        return f"{self.name} is a {self.breed}."
 
-dog1 = Dog("Rex", "German Shepherd")
-dog2 = Dog("Luna", "Labrador")
+dog1 = Dog("Tensor", "Golden Retriever")
+dog2 = Dog("Meow", "Husky")
+
+print("----------Exercise 2: Instance vs Class Variables----------")
 print(dog1.describe())
 print(dog2.describe())
 
-dog1.species = "Canis lupus"
-print(dog1.describe())
-print(dog2.describe())
 
 
-# Exercise 3: Bank Account with Validation
 class BankAccount:
     def __init__(self, account_holder, balance=0):
         self.account_holder = account_holder
@@ -43,26 +40,30 @@ class BankAccount:
     def deposit(self, amount):
         if amount > 0:
             self.balance += amount
+            print(f"{self.account_holder} deposited ${amount}. Balance is now ${self.balance}.")
         else:
-            print("Deposit amount must be positive.")
+            print("Deposit must be more than zero.")
 
     def withdraw(self, amount):
-        if amount > 0 and amount <= self.balance:
-            self.balance -= amount
+        if amount > 0:
+            if amount <= self.balance:
+                self.balance -= amount
+                print(f"{self.account_holder} withdrew ${amount}. Balance is now ${self.balance}.")
+            else:
+                print("Not enough funds.")
         else:
-            print("Invalid withdrawal amount.")
+            print("Withdrawal must be more than zero.")
 
     def get_balance(self):
         return self.balance
 
-acc = BankAccount("John Doe")
-acc.deposit(500)
-acc.withdraw(200)
-print(acc.get_balance())
+print("----------Exercise 3: Bank Account with Validation----------")
+acc = BankAccount("Mohammad Aldiesi", 150)
+acc.deposit(200)
+acc.withdraw(50)
 acc.withdraw(500)
 
 
-# Exercise 4: Library System
 class Book:
     def __init__(self, title, author, isbn):
         self.title = title
@@ -70,7 +71,7 @@ class Book:
         self.isbn = isbn
 
     def display_info(self):
-        return f"{self.title} by {self.author} (ISBN: {self.isbn})"
+        return f"'{self.title}' by {self.author} (ISBN: {self.isbn})"
 
 class Library:
     def __init__(self):
@@ -78,24 +79,28 @@ class Library:
 
     def add_book(self, book):
         self.books.append(book)
+        print(f"Added: {book.title}")
 
     def remove_book(self, isbn):
-        self.books = [b for b in self.books if b.isbn != isbn]
+        self.books = [book for book in self.books if book.isbn != isbn]
+        print(f"Removed book with ISBN: {isbn}")
 
     def list_books(self):
-        return [b.display_info() for b in self.books]
+        if not self.books:
+            return ["No books in the library right now."]
+        return [book.display_info() for book in self.books]
 
 lib = Library()
-b1 = Book("1984", "George Orwell", "12345")
-b2 = Book("The Hobbit", "J.R.R. Tolkien", "67890")
-lib.add_book(b1)
-lib.add_book(b2)
+book1 = Book("Deep Learning with Python", "Eng. Naser Alzaghari", "9781617294433")
+book2 = Book("Hands-On Machine Learning", "Dr. Ahmad AbuShareeha", "9781492032649")
+lib.add_book(book1)
+lib.add_book(book2)
+print("----------Exercise 4: Library System----------")
 print(lib.list_books())
-lib.remove_book("12345")
+lib.remove_book("9781617294433")
 print(lib.list_books())
 
 
-# Exercise 5: Class Variable Counter
 class Car:
     total_cars = 0
 
@@ -111,8 +116,12 @@ class Car:
     def get_total_cars():
         return Car.total_cars
 
-c1 = Car("Toyota", "Corolla")
-c2 = Car("Honda", "Civic")
-print(c1.display_car())
-print(c2.display_car())
-print(Car.get_total_cars())
+car1 = Car("Mercedes", "C180 Kompressor")
+car2 = Car("Toyota", "Corolla")
+car3 = Car("BMW", "M4 Competition")
+
+print("----------Exercise 5: Class Variable Counter----------")
+print(car1.display_car())
+print(car2.display_car())
+print(car3.display_car())
+print(f"Total cars registered: {Car.get_total_cars()}")

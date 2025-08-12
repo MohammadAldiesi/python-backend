@@ -1,0 +1,118 @@
+# Exercise 1: Basic Class and Object
+class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    def introduce(self):
+        return f"Hello, my name is {self.name} and I am {self.age} years old."
+
+p1 = Person("Alice", 25)
+p2 = Person("Bob", 30)
+print(p1.introduce())
+print(p2.introduce())
+
+
+# Exercise 2: Instance vs Class Variables
+class Dog:
+    species = "Canis familiaris"
+
+    def __init__(self, name, breed):
+        self.name = name
+        self.breed = breed
+
+    def describe(self):
+        return f"{self.name} is a {self.breed}. Species: {self.species}."
+
+dog1 = Dog("Rex", "German Shepherd")
+dog2 = Dog("Luna", "Labrador")
+print(dog1.describe())
+print(dog2.describe())
+
+dog1.species = "Canis lupus"
+print(dog1.describe())
+print(dog2.describe())
+
+
+# Exercise 3: Bank Account with Validation
+class BankAccount:
+    def __init__(self, account_holder, balance=0):
+        self.account_holder = account_holder
+        self.balance = balance
+
+    def deposit(self, amount):
+        if amount > 0:
+            self.balance += amount
+        else:
+            print("Deposit amount must be positive.")
+
+    def withdraw(self, amount):
+        if amount > 0 and amount <= self.balance:
+            self.balance -= amount
+        else:
+            print("Invalid withdrawal amount.")
+
+    def get_balance(self):
+        return self.balance
+
+acc = BankAccount("John Doe")
+acc.deposit(500)
+acc.withdraw(200)
+print(acc.get_balance())
+acc.withdraw(500)
+
+
+# Exercise 4: Library System
+class Book:
+    def __init__(self, title, author, isbn):
+        self.title = title
+        self.author = author
+        self.isbn = isbn
+
+    def display_info(self):
+        return f"{self.title} by {self.author} (ISBN: {self.isbn})"
+
+class Library:
+    def __init__(self):
+        self.books = []
+
+    def add_book(self, book):
+        self.books.append(book)
+
+    def remove_book(self, isbn):
+        self.books = [b for b in self.books if b.isbn != isbn]
+
+    def list_books(self):
+        return [b.display_info() for b in self.books]
+
+lib = Library()
+b1 = Book("1984", "George Orwell", "12345")
+b2 = Book("The Hobbit", "J.R.R. Tolkien", "67890")
+lib.add_book(b1)
+lib.add_book(b2)
+print(lib.list_books())
+lib.remove_book("12345")
+print(lib.list_books())
+
+
+# Exercise 5: Class Variable Counter
+class Car:
+    total_cars = 0
+
+    def __init__(self, make, model):
+        self.make = make
+        self.model = model
+        Car.total_cars += 1
+
+    def display_car(self):
+        return f"{self.make} {self.model}"
+
+    @staticmethod
+    def get_total_cars():
+        return Car.total_cars
+
+c1 = Car("Toyota", "Corolla")
+c2 = Car("Honda", "Civic")
+print(c1.display_car())
+print(c2.display_car())
+print(Car.get_total_cars())

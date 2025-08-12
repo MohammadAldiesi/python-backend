@@ -1,0 +1,5 @@
+192.168.0.1 200 /index.html
+192.168.0.2 404 /missing.html
+192.168.0.3 500 /server-error
+192.168.0.4 200 /home
+192.168.0.5 404 /contact

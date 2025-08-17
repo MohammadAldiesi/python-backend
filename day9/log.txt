@@ -1,0 +1,7 @@
+Finished!Doubler(5) = 10
+Tripler(4) = 12
+Squarer(6) = 36
+greet called 1 times
+greet called 2 times
+add((3, 5)) = 8
+add((10, 20)) = 30
